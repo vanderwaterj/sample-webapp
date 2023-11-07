@@ -44,5 +44,11 @@
         "tabWidth": 4,
         "semi": false,
         "singleQuote": true
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "eslint",
+            "prettier --write"
+        ]
     }
 }

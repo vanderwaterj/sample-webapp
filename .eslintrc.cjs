@@ -38,5 +38,6 @@ module.exports = {
             'warn',
             { allowConstantExport: true },
         ],
+        semi: [2, 'always'],
     },
 }

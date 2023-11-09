@@ -1,26 +1,39 @@
 import { useState } from 'react';
 
-import { Settings, UserCircle, HelpCircle, Globe } from 'lucide-react';
+import {
+    Settings,
+    UserCircle,
+    HelpCircle,
+    Globe,
+    Moon,
+    Sun,
+} from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import AccountSettingsDialog from '@/components/ui/dialogs/account-settings-dialog';
 import HelpDialog from '@/components/ui/dialogs/help-dialog';
 import LanguageSettingsDialog from '@/components/ui/dialogs/language-settings-dialog';
-import ModeToggle from '@/components/ui/mode-toggle';
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
 } from '@/components/ui/popover';
-import { Separator } from '@/components/ui/separator';
 import { SettingsFieldProps } from '@/components/ui/settings/settings-field';
 import SettingsMenuContent from '@/components/ui/settings/settings-menu-content';
 import { useTheme } from '@/hooks/useTheme';
 
 const SettingsButton = () => {
-    const { theme } = useTheme();
+    const { theme, setTheme } = useTheme();
 
     const settingsFields: SettingsFieldProps[] = [
+        {
+            text: 'Toggle Theme',
+            icons: [<Moon key={0} />, <Sun key={1} />],
+            selectedIconIndex: theme === 'dark' ? 0 : 1,
+            clickHandler: () => {
+                setTheme(theme === 'dark' ? 'light' : 'dark');
+            },
+        },
         {
             text: 'Account Settings',
             icon: <UserCircle />,
@@ -30,11 +43,6 @@ const SettingsButton = () => {
             text: 'Language Settings',
             icon: <Globe />,
             dialogContent: LanguageSettingsDialog,
-            rotationProps: {
-                iconRotationState: theme === 'dark',
-                degrees: '90',
-                clockwise: false,
-            },
         },
         {
             text: 'No Icon',
@@ -67,8 +75,6 @@ const SettingsButton = () => {
                 </span>
             </PopoverTrigger>
             <PopoverContent align="end">
-                <ModeToggle textSize="text-sm" />
-                <Separator />
                 <SettingsMenuContent settingsFields={settingsFields} />
             </PopoverContent>
         </Popover>

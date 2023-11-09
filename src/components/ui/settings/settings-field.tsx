@@ -11,6 +11,18 @@ export type SettingsFieldProps =
     | SettingsFieldIconProps;
 
 const SettingsContent = (props: SettingsFieldProps) => {
+    let icons: React.ReactElement[] = [];
+    if ('icon' in props && props.icon !== undefined) {
+        icons.push(props.icon);
+    } else if ('icons' in props && props.icons !== undefined) {
+        icons = props.icons;
+    }
+
+    let selectedIconIndex = 0;
+    if ('selectedIconIndex' in props && props.selectedIconIndex !== undefined) {
+        selectedIconIndex = props.selectedIconIndex;
+    }
+
     return (
         <div
             className={props.className || ''}
@@ -18,17 +30,44 @@ const SettingsContent = (props: SettingsFieldProps) => {
             onClick={props.clickHandler}
         >
             <span className="select-none">{props.text}</span>
-            {'icon' in props && (
-                <div>
-                    {props.rotationProps?.iconRotationState
-                        ? React.cloneElement(props.icon, {
-                              className: `transition-all ${
-                                  props.rotationProps.clockwise ? '' : '-'
-                              }rotate-${props.rotationProps.degrees}`,
-                          })
-                        : props.icon}
+            {
+                <div className="relative">
+                    {
+                        // If there are multiple icons, render each one, but set scale-0 on all but the selected one
+                        // Otherwise, render the single icon
+                        icons.map((icon, index) => {
+                            const iconScale: string =
+                                index === selectedIconIndex
+                                    ? 'scale-100'
+                                    : 'scale-0';
+
+                            const iconRotation: string =
+                                'rotationProps' in props &&
+                                props.rotationProps !== undefined
+                                    ? props.rotationProps.iconRotationState
+                                        ? `${
+                                              props.rotationProps.clockwise
+                                                  ? ''
+                                                  : '-'
+                                          }rotate-${
+                                              props.rotationProps.degrees
+                                          }`
+                                        : ''
+                                    : 'rotate-0';
+
+                            const iconClassName = `absolute transition-all -ml-6 -m-3 ${iconScale} ${iconRotation}`;
+
+                            return (
+                                <div key={index} className={iconClassName}>
+                                    {React.cloneElement(icon, {
+                                        className: 'margin',
+                                    })}
+                                </div>
+                            );
+                        })
+                    }
                 </div>
-            )}
+            }
         </div>
     );
 };

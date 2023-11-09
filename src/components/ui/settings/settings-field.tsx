@@ -55,10 +55,11 @@ const SettingsContent = (props: SettingsFieldProps) => {
                                         : ''
                                     : 'rotate-0';
 
-                            const iconClassName = `absolute transition-all -ml-6 -m-3 ${iconScale} ${iconRotation}`;
-
                             return (
-                                <div key={index} className={iconClassName}>
+                                <div
+                                    key={index}
+                                    className={`absolute transition-all -ml-6 -m-3 ${iconScale} ${iconRotation}`}
+                                >
                                     {React.cloneElement(icon, {
                                         className: 'margin',
                                     })}

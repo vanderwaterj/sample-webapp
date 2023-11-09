@@ -1,8 +1,4 @@
-import {
-    AlertDialog,
-    AlertDialogTrigger,
-    AlertDialogContent,
-} from '@/components/ui/alert-dialog';
+import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog';
 
 type OpenDialogWrapperProps = {
     children: React.ReactNode;
@@ -12,12 +8,10 @@ type OpenDialogWrapperProps = {
 
 const OpenDialogWrapper = (props: OpenDialogWrapperProps) => {
     return (
-        <AlertDialog>
-            <AlertDialogTrigger className="w-full">
-                {props.children}
-            </AlertDialogTrigger>
-            <AlertDialogContent>{props.dialogContent()}</AlertDialogContent>
-        </AlertDialog>
+        <Dialog>
+            <DialogTrigger className="w-full">{props.children}</DialogTrigger>
+            <DialogContent>{props.dialogContent()}</DialogContent>
+        </Dialog>
     );
 };
 

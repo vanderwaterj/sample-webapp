@@ -1,25 +1,28 @@
+import { Button } from '@/components/ui/button';
 import {
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogCancel,
-    AlertDialogAction,
-} from '@/components/ui/alert-dialog';
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogFooter,
+    DialogClose,
+} from '@/components/ui/dialog';
 
 const LanguageSettingsDialog = () => {
     return (
         <>
-            <AlertDialogHeader>
-                <AlertDialogTitle>Language Settings</AlertDialogTitle>
-                <AlertDialogDescription>
+            <DialogHeader>
+                <DialogTitle>Language Settings</DialogTitle>
+                <DialogDescription>
                     lol no shot im gonna localize this rn
-                </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Continue</AlertDialogAction>
-            </AlertDialogFooter>
+                </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+                <DialogClose asChild>
+                    <Button type="button" variant="secondary">
+                        Close
+                    </Button>
+                </DialogClose>
+            </DialogFooter>
         </>
     );
 };

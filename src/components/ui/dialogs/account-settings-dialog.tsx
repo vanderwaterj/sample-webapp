@@ -1,25 +1,26 @@
+import { Button } from '@/components/ui/button';
 import {
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogCancel,
-    AlertDialogAction,
-} from '@/components/ui/alert-dialog';
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogFooter,
+    DialogClose,
+} from '@/components/ui/dialog';
 
 const AccountSettingsDialog = () => {
     return (
         <>
-            <AlertDialogHeader>
-                <AlertDialogTitle>Account Settings</AlertDialogTitle>
-                <AlertDialogDescription>
-                    dummy description
-                </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Continue</AlertDialogAction>
-            </AlertDialogFooter>
+            <DialogHeader>
+                <DialogTitle>Account Settings</DialogTitle>
+                <DialogDescription>dummy description</DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+                <DialogClose asChild>
+                    <Button type="button" variant="secondary">
+                        Close
+                    </Button>
+                </DialogClose>
+            </DialogFooter>
         </>
     );
 };

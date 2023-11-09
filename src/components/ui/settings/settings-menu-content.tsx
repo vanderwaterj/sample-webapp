@@ -2,7 +2,6 @@ import { Separator } from '@/components/ui/separator';
 import SettingsField, {
     SettingsFieldProps,
 } from '@/components/ui/settings/settings-field';
-import { settingsFieldHasIcon } from '@/types/typeGuards';
 
 type SettingsMenuContentProps = {
     settingsFields: SettingsFieldProps[];
@@ -14,25 +13,15 @@ const SettingsMenuContent = (props: SettingsMenuContentProps) => {
     return settingsFields.map((field, index) => {
         const isLastField = index === settingsFields.length - 1;
 
-        if (settingsFieldHasIcon(field)) {
-            return (
-                <div key={field.text}>
-                    <SettingsField
-                        text={field.text}
-                        icon={field.icon}
-                        rotationProps={field.rotationProps}
-                    />
-                    {!isLastField && <Separator />}
-                </div>
-            );
-        } else {
-            return (
-                <div key={field.text}>
-                    <SettingsField text={field.text} />
-                    {!isLastField && <Separator />}
-                </div>
-            );
-        }
+        const settingsClassName =
+            'relative flex cursor-pointer items-center rounded-sm px-2 py-1.5 h-12 text-sm outline-none transition-colors justify-between';
+
+        return (
+            <div key={field.text}>
+                <SettingsField className={settingsClassName} {...field} />
+                {!isLastField && <Separator />}
+            </div>
+        );
     });
 };
 

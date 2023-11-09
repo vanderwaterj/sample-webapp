@@ -1,18 +1,16 @@
-import React from 'react'
+import React from 'react';
 
 // import { ModeToggle } from '@/components/ui/mode-toggle'
-import MainMenuBar from '@/components/main-menu-bar'
+import MainMenuBar from '@/components/ui/main-menu-bar';
+import MainPageContent from '@/components/ui/main-page-content';
 
 const AppProvider: React.FC = () => {
     return (
         <>
-            <div className="hidden h-full flex-col md:flex">
-                <div className="container flex flex-row items-start justify-between space-y-2 py-4 md:flex">
-                    <MainMenuBar />
-                </div>
-            </div>
+            <MainMenuBar />
+            <MainPageContent />
         </>
-    )
-}
+    );
+};
 
-export default AppProvider
+export default AppProvider;

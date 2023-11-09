@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { Settings, UserCircle, HelpCircle, Globe } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
+import AccountSettingsDialog from '@/components/ui/dialogs/account-settings-dialog';
+import HelpDialog from '@/components/ui/dialogs/help-dialog';
+import LanguageSettingsDialog from '@/components/ui/dialogs/language-settings-dialog';
 import ModeToggle from '@/components/ui/mode-toggle';
 import {
     Popover,
@@ -16,14 +19,17 @@ import { useTheme } from '@/hooks/useTheme';
 
 const SettingsButton = () => {
     const { theme } = useTheme();
+
     const settingsFields: SettingsFieldProps[] = [
         {
             text: 'Account Settings',
             icon: <UserCircle />,
+            dialogContent: AccountSettingsDialog,
         },
         {
             text: 'Language Settings',
             icon: <Globe />,
+            dialogContent: LanguageSettingsDialog,
             rotationProps: {
                 iconRotationState: theme === 'dark',
                 degrees: '90',
@@ -36,6 +42,7 @@ const SettingsButton = () => {
         {
             text: 'Help',
             icon: <HelpCircle />,
+            dialogContent: HelpDialog,
         },
     ];
 
@@ -59,7 +66,7 @@ const SettingsButton = () => {
                     <span className="sr-only">Toggle settings</span>
                 </span>
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent align="end">
                 <ModeToggle textSize="text-sm" />
                 <Separator />
                 <SettingsMenuContent settingsFields={settingsFields} />

@@ -30,6 +30,7 @@ module.exports = {
                 },
             },
         ],
+        '@typescript-eslint/no-unused-vars': 'warn',
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'error',
         'react/prop-types': 'off',
@@ -40,4 +41,4 @@ module.exports = {
         ],
         semi: [2, 'always'],
     },
-}
+};

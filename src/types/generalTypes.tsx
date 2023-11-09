@@ -5,6 +5,8 @@ import { ReactElement } from 'react';
 type SettingsFieldCommonProps = {
     text: string;
     clickHandler?: () => void;
+    dialogContent?: () => ReactElement;
+    className?: string;
 };
 
 export type SettingsFieldNoIconProps = SettingsFieldCommonProps & {

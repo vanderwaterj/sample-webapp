@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '@/components/ui/button';
+import OpenDialogWrapper from '@/components/ui/dialogs/open-dialog-wrapper';
 import {
     SettingsFieldNoIconProps,
     SettingsFieldIconProps,
@@ -10,27 +10,39 @@ export type SettingsFieldProps =
     | SettingsFieldNoIconProps
     | SettingsFieldIconProps;
 
+const SettingsContent = (props: SettingsFieldProps) => {
+    return (
+        <div
+            className={props.className || ''}
+            key={props.text}
+            onClick={props.clickHandler}
+        >
+            <span className="select-none">{props.text}</span>
+            {'icon' in props && (
+                <div>
+                    {props.rotationProps?.iconRotationState
+                        ? React.cloneElement(props.icon, {
+                              className: `transition-all ${
+                                  props.rotationProps.clockwise ? '' : '-'
+                              }rotate-${props.rotationProps.degrees}`,
+                          })
+                        : props.icon}
+                </div>
+            )}
+        </div>
+    );
+};
+
 const SettingsField = (props: SettingsFieldProps) => {
     return (
         <>
-            <div
-                key={props.text}
-                className="relative flex cursor-pointer items-center rounded-sm px-2 py-1.5 h-12 text-sm outline-none transition-colors justify-between"
-                onClick={props.clickHandler}
-            >
-                <span className="select-none">{props.text}</span>
-                {'icon' in props && (
-                    <Button variant="link" size="icon">
-                        {props.rotationProps?.iconRotationState
-                            ? React.cloneElement(props.icon, {
-                                  className: `transition-all ${
-                                      props.rotationProps.clockwise ? '' : '-'
-                                  }rotate-${props.rotationProps.degrees}`,
-                              })
-                            : props.icon}
-                    </Button>
-                )}
-            </div>
+            {'dialogContent' in props && props?.dialogContent !== undefined ? (
+                <OpenDialogWrapper dialogContent={props.dialogContent}>
+                    <SettingsContent {...props} />
+                </OpenDialogWrapper>
+            ) : (
+                <SettingsContent {...props} />
+            )}
         </>
     );
 };

@@ -20,7 +20,7 @@ const ModeToggle = ({ textSize = 'text-base' }: ModeToggleProps) => {
             onClick={buttonClickHandler}
             className="relative flex cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors justify-between"
         >
-            <span className={textSize}>Toggle theme</span>
+            <span className={`select-none ${textSize}`}>Toggle theme</span>
             <Button variant="link" size="icon">
                 <Sun
                     className={`rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0`}

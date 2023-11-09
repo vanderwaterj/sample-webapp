@@ -16,22 +16,21 @@ const SettingsMenuContent = (props: SettingsMenuContentProps) => {
 
         if (settingsFieldHasIcon(field)) {
             return (
-                <>
+                <div key={field.text}>
                     <SettingsField
-                        key={field.text}
                         text={field.text}
                         icon={field.icon}
                         rotationProps={field.rotationProps}
                     />
                     {!isLastField && <Separator />}
-                </>
+                </div>
             );
         } else {
             return (
-                <>
-                    <SettingsField key={field.text} text={field.text} />
+                <div key={field.text}>
+                    <SettingsField text={field.text} />
                     {!isLastField && <Separator />}
-                </>
+                </div>
             );
         }
     });

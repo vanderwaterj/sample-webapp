@@ -15,10 +15,10 @@ const SettingsField = (props: SettingsFieldProps) => {
         <>
             <div
                 key={props.text}
-                className="relative flex cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors justify-between"
+                className="relative flex cursor-pointer items-center rounded-sm px-2 py-1.5 h-12 text-sm outline-none transition-colors justify-between"
                 onClick={props.clickHandler}
             >
-                <span>{props.text}</span>
+                <span className="select-none">{props.text}</span>
                 {'icon' in props && (
                     <Button variant="link" size="icon">
                         {props.rotationProps?.iconRotationState

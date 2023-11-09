@@ -12,23 +12,33 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { SettingsFieldProps } from '@/components/ui/settings/settings-field';
 import SettingsMenuContent from '@/components/ui/settings/settings-menu-content';
-
-const settingsFields: SettingsFieldProps[] = [
-    {
-        text: 'Account Settings',
-        icon: <UserCircle />,
-    },
-    {
-        text: 'Language Settings',
-        icon: <Globe />,
-    },
-    {
-        text: 'Help',
-        icon: <HelpCircle />,
-    },
-];
+import { useTheme } from '@/hooks/useTheme';
 
 const SettingsButton = () => {
+    const { theme } = useTheme();
+    const settingsFields: SettingsFieldProps[] = [
+        {
+            text: 'Account Settings',
+            icon: <UserCircle />,
+        },
+        {
+            text: 'Language Settings',
+            icon: <Globe />,
+            rotationProps: {
+                iconRotationState: theme === 'dark',
+                degrees: '90',
+                clockwise: false,
+            },
+        },
+        {
+            text: 'No Icon',
+        },
+        {
+            text: 'Help',
+            icon: <HelpCircle />,
+        },
+    ];
+
     const [isOpen, setIsOpen] = useState(false);
 
     const onOpenHandler = () => {

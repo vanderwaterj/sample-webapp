@@ -1,4 +1,4 @@
-import tailwindcssAnimate from 'tailwindcss-animate'
+import tailwindcssAnimate from 'tailwindcss-animate';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -74,5 +74,11 @@ export default {
             },
         },
     },
+    variants: {
+        extend: {
+            transform: ['hover', 'focus', 'active', 'group-hover'],
+            rotate: ['active', 'group-hover'],
+        },
+    },
     plugins: [tailwindcssAnimate],
-}
+};
